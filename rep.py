@@ -13,12 +13,13 @@ LastName|FirstName|Social|RepID|DataSource|Status|SubCode
 
 
 class User:
-    def __init__(self, last_name, first_name, social, rep_code, data_source):
+    def __init__(self, last_name, first_name, social, rep_code, data_source, sub_code=None):
         self.last_name = last_name
         self.first_name = first_name
         self.social = social
         self.rep_code = rep_code
         self.data_source = data_source
+        self.sub_code = sub_code
 
 
 def create_user():
@@ -37,16 +38,11 @@ def create_user():
     # continue asking for input
     rep_code = input("Please enter user rep code:\n")
     data_source = input("Please choose the Data Source. Enter 6 for NFS, 1 for DST, 2 for DAZL:\n")
-    sub_code_check = input("Are you adding an adviser sub code? "
-                           "Type \"Y\" for yes and \"N\" for no and hit Enter:\n")
-
-    # run if user is adding sub code
-    if sub_code_check == "Y":
-        sub_code = input("Please enter sub code:\n")
-
-    user = User(last_name, first_name, social, rep_code, data_source)
-    print(user.social)
-
+    sub_code = input("Please enter sub code. Leave it blank and hit Enter if no Sub Code for this rep:\n")
+    user = User(last_name, first_name, social, rep_code, data_source, sub_code)
+    rep_file = open('repfile.txt', 'w')
+    rep_file.write(last_name + "|" + first_name + "|" + social + "|" + rep_code + "|" + data_source +
+                   "|" )
     add_another_user_choice = input("Would you like to create add another user to this file?:\n")
 
     if add_another_user_choice == "davi":
