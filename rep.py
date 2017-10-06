@@ -11,8 +11,8 @@ LastName|FirstName|Social|RepID|DataSource|Status|SubCode
 
 """
 
-def create_user():
 
+def create_user():
 
     while True:
         # prompt for user info and write to file
