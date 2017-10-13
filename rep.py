@@ -31,11 +31,20 @@ def create_user():
         data_source = input("Please choose the Data Source. Enter 6 for NFS, 1 for DST, 2 for DAZL:\n")
         sub_code = input("Please enter sub code. Leave it blank and hit Enter if no Sub Code for this rep:\n")
 
-        # create rep file
+        # create rep file and and checks if user is adding a sub rep code
         with open('repfile.txt', 'a') as rep_file:
             rep_file.write(last_name + "|" + first_name + "|" + social + "|" + rep_code + "|" + data_source +
-                           "A" + "|" + sub_code + "|||||||\n")
-        add_another_user_choice = input("Would you like to add another user to this file?:\n")
+                           "A" + "||")
+        # check if sub code is being added. If yes, append the appropriate format to the file.
+
+        if sub_code != ' ':
+            with open('repfile.txt', 'a') as rep_file:
+                rep_file.write(sub_code + "|||||\n")
+        else:
+            with open('repfile.txt', 'a') as rep_file:
+                rep_file.write("|||||||\n")
+
+        add_another_user_choice = input("Would you like to add another user to this file? Enter Y or N:\n")
 
         # check if another rep being added
         if add_another_user_choice == "N":
